@@ -1,0 +1,9 @@
+.board{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    height:100vh;
+    background-color:#e9e9ef;
+    border: 1px solid black ;
+    border-radius:10px;
+}

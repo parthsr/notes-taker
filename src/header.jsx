@@ -1,7 +1,7 @@
 import React from 'react';
 
 const header = () => (
-  <footer>Start taking Notes</footer>
+  <header>Start taking Notes</header>
 );
 
 export default header;
