@@ -1,0 +1,14 @@
+.note{
+    display:flex;
+    flex-direction: row;
+    margin-bottom:10px;
+    margin-top:10px;
+}
+.note p{
+    margin:0px;
+}
+img{
+    width:20px;
+    height:20px;
+    margin-left: 10px;
+}

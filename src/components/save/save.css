@@ -1,0 +1,9 @@
+.save{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+}
+.save button{
+    background-color: #e9e9ef;
+    border:0px;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Board from './board';
+import Board from './components/board/board';
 
 const render = () => {
   ReactDOM.render(

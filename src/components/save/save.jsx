@@ -1,8 +1,9 @@
 import React from 'react';
+import './save.css';
 
-const Save = () => (
+const Save = props => (
   <div className="save">
-    <button>Save</button>
+    <button><b>Save</b></button>
     <p> Characters</p>
   </div>
 );

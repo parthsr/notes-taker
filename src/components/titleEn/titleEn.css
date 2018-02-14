@@ -1,0 +1,10 @@
+.titleEn{
+    display:flex;
+    flex-direction: row;
+    justify-content:space-between;
+}
+.titleEn button{
+    height:100%;
+    padding:10px;
+    border-radius: 5px;
+}

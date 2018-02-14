@@ -1,0 +1,12 @@
+.topic{
+    display:flex;
+    flex-direction: row;
+}
+input{
+    padding: 10px;
+    flex-grow: 1;
+}
+
+input::placeholder{
+    font-size: 20px;
+}

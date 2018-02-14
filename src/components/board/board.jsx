@@ -1,7 +1,8 @@
 import React from 'react';
-import Header from './header';
-import Footer from './footer';
-import BoardContent from './boardContent';
+import Header from '../header/header';
+import Footer from '../footer/footer';
+import BoardContent from '../boardContent/boardContent';
+import './board.css';
 
 const Board = () => (
   <div className="board">
