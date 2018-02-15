@@ -4,3 +4,6 @@ textarea{
 .warning{
     background-color: red;
 }
+.noWarning{
+    background-color: white;
+}

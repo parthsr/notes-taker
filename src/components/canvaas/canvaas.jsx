@@ -9,27 +9,13 @@ class Canvaas extends React.Component {
       onLengthChange: PropTypes.func.isRequired,
     };
     super(props);
-    this.state = {
-      limit: false,
-    };
-  }
-
-  onChangeDisplay(event) {
-    this.note = event.target.value;
-    if (this.note.length > 119) {
-      this.note = this.note.slice(0, 119);
-      this.setState({ limit: true });
-    } else {
-      this.setState({ limit: false });
-    }
   }
   render() {
     return (
       <textarea
-        value={this.note}
-        className={this.state.limit ? 'warning' : ''}
+        value={this.props.realText}
+        className={this.props.limit ? 'warning' : 'noWarning'}
         onChange={(event) => {
-          this.onChangeDisplay(event);
           this.props.onLengthChange(event);
         }
       }
@@ -38,4 +24,10 @@ class Canvaas extends React.Component {
   }
 }
 export default Canvaas;
+
+Canvaas.propTypes = {
+  realText: PropTypes.string.isRequired,
+  limit: PropTypes.number.isRequired,
+
+};
 
