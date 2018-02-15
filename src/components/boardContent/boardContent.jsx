@@ -13,8 +13,7 @@ class BoardContent extends React.Component {
       length: 0,
       title: '',
       textAreaContent: '',
-      titleArray: [],
-      textAreaArray: [],
+      totalContent: [],
       limit: false,
     };
   }
@@ -37,16 +36,17 @@ class BoardContent extends React.Component {
     });
   }
   onSave() {
-    const titleArrays = this.state.titleArray;
-    titleArrays.push(this.state.title);
-    const textAreaArrays = this.state.textAreaArray;
-    textAreaArrays.push(this.state.textAreaContent);
+    const toInsertObject = {
+      title: this.state.title,
+      content: this.state.textAreaContent,
+    };
+    const totalContents = this.state.totalContent;
+    totalContents.push(toInsertObject);
     this.setState({
       length: 0,
       title: '',
       textAreaContent: '',
-      titleArray: titleArrays,
-      textAreaArray: textAreaArrays,
+      totalContent: totalContents,
       limit: false,
     });
   }
