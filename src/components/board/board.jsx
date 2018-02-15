@@ -7,6 +7,7 @@ import './Board.css';
 class Board extends React.Component {
   state = {
     totalContent: [],
+    saved: false,
   }
   onSave = (title, textAreaContent) => {
     const toInsertObject = {

@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Title from '../Title/Title';
+import ButtonEn from '../ButtonEn/ButtonEn';
 import './TitleEn.css';
 
 const TitleEn = props => (
   <div className="titleEn">
-    <p><b>{props.title}</b></p>
-    <button><b>{props.buttonText}</b></button>
+    <Title title={props.title} />
+    <ButtonEn buttonText={props.buttonText} />
   </div>
 );
 
