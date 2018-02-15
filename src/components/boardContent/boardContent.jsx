@@ -35,18 +35,12 @@ class BoardContent extends React.Component {
       textAreaContent: this.note,
     });
   }
-  onSave() {
-    const toInsertObject = {
-      title: this.state.title,
-      content: this.state.textAreaContent,
-    };
-    const totalContents = this.state.totalContent;
-    totalContents.push(toInsertObject);
+  onSaveContent() {
+    this.props.onSave(this.state.title, this.state.textAreaContent);
     this.setState({
       length: 0,
       title: '',
       textAreaContent: '',
-      totalContent: totalContents,
       limit: false,
     });
   }
@@ -57,7 +51,10 @@ class BoardContent extends React.Component {
         <Topic placeholder="Tasks for Today" realText={this.state.title} onTopicChange={event => this.onTopicChange(event)} />
         <Note text="Please type your note below" />
         <Canvaas realText={this.state.textAreaContent} onLengthChange={event => this.onLengthChange(event)} limit={this.state.limit} />
-        <Save onSave={() => this.onSave()} length={this.state.length} />
+        <Save
+          onSaveContent={() => this.onSaveContent()}
+          length={this.state.length}
+        />
       </div>
     );
   }

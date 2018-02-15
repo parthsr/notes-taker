@@ -4,7 +4,7 @@ import './titleEn.css';
 
 const TitleEn = props => (
   <div className="titleEn">
-    <p>{props.title}</p>
+    <p><b>{props.title}</b></p>
     <button><b>{props.buttonText}</b></button>
   </div>
 );

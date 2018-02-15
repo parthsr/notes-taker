@@ -4,7 +4,11 @@ import './topic.css';
 
 const Topic = props => (
   <div className="topic">
-    <input value={props.realText}placeholder={props.placeholder} onChange={(event) => { props.onTopicChange(event); }} />
+    <input
+      value={props.realText}
+      placeholder={props.placeholder}
+      onChange={(event) => { props.onTopicChange(event); }}
+    />
   </div>
 );
 
