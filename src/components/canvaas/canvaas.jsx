@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './canvaas.css';
-
+import './Canvaas.css';
 
 class Canvaas extends React.Component {
   constructor(props) {

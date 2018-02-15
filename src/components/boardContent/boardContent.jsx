@@ -1,10 +1,12 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import TitleEn from '../titleEn/titleEn';
-import Topic from '../topic/topic';
-import Note from '../note/note';
-import Canvaas from '../canvaas/canvaas';
-import Save from '../save/save';
-import './boardContent.css';
+import TitleEn from '../TitleEn/TitleEn';
+import Topic from '../Topic/Topic';
+import Note from '../Note/Note';
+import Canvaas from '../Canvaas/Canvaas';
+import Save from '../Save/Save';
+import './BoardContent.css';
+
 
 class BoardContent extends React.Component {
   constructor(props) {
@@ -13,8 +15,10 @@ class BoardContent extends React.Component {
       length: 0,
       title: '',
       textAreaContent: '',
-      totalContent: [],
       limit: false,
+    };
+    BoardContent.propTypes = {
+      onSave: PropTypes.func.isRequired,
     };
   }
   onTopicChange = (event) => {
@@ -46,11 +50,19 @@ class BoardContent extends React.Component {
   }
   render() {
     return (
-      <div className="boardcontent">
+      <div className="BoardContent-boardcontent">
         <TitleEn title="Note Title" buttonText="en" />
-        <Topic placeholder="Tasks for Today" realText={this.state.title} onTopicChange={event => this.onTopicChange(event)} />
+        <Topic
+          placeholder="Tasks for Today"
+          realText={this.state.title}
+          onTopicChange={event => this.onTopicChange(event)}
+        />
         <Note text="Please type your note below" />
-        <Canvaas realText={this.state.textAreaContent} onLengthChange={event => this.onLengthChange(event)} limit={this.state.limit} />
+        <Canvaas
+          realText={this.state.textAreaContent}
+          onLengthChange={event => this.onLengthChange(event)}
+          limit={this.state.limit}
+        />
         <Save
           onSaveContent={() => this.onSaveContent()}
           length={this.state.length}

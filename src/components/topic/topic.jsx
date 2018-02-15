@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './topic.css';
+import './Topic.css';
 
 const Topic = props => (
   <div className="topic">

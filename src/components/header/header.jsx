@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Header.css';
 
 const Header = props => (
-  <header><b>{props.text}</b></header>
+  <header className="Header-header"><b>{props.text}</b></header>
 );
 
 export default Header;

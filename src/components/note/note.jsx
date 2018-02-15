@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import img from '../../assets/notepad.png';
-import './note.css';
+import './Note.css';
 
 const Note = props => (
   <div className="note">

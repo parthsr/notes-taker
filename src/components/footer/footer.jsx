@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Footer.css';
 
 const Footer = props => (
-  <footer className="footer"><b>{props.text}</b></footer>
+  <footer className="Footer-footer"><b>{props.text}</b></footer>
 );
 
 export default Footer;

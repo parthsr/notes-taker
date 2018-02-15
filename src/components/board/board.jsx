@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '../header/header';
-import Footer from '../footer/footer';
-import BoardContent from '../boardContent/boardContent';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import BoardContent from '../BoardContent/BoardContent';
 import './Board.css';
 
 class Board extends React.Component {
@@ -22,9 +22,11 @@ class Board extends React.Component {
   render() {
     return (
       <div className="Board-board">
-        <Header text="Start taking Notes" />
-        <BoardContent onSave={(title, textAreaContent) => this.onSave(title, textAreaContent)} />
-        <Footer text="AboutUs" />
+        <Header className="Board-header" text="Start taking Notes" />
+        <BoardContent
+          onSave={(title, textAreaContent) => this.onSave(title, textAreaContent)}
+        />
+        <Footer className="Board-footer"text="AboutUs" />
       </div>
     );
   }

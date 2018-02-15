@@ -8,13 +8,3 @@
     border-radius:10px;
     flex-grow:1;
 }
-header{
-    text-align: center;
-    background-color: white;
-    padding:20px;
-}
-footer{
-    text-align:center;
-    background-color: white;
-    padding:20px;
-}

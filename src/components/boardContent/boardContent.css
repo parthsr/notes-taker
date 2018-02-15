@@ -1,4 +1,4 @@
-.boardcontent{
+.BoardContent-boardcontent{
     display: flex;
     flex-direction: column;
     justify-content:space-between;

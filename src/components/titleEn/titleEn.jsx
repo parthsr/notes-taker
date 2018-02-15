@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './titleEn.css';
+import './TitleEn.css';
 
 const TitleEn = props => (
   <div className="titleEn">
