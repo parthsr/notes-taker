@@ -1,7 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const footer = () => (
-  <footer className="footer"><b>About Us</b></footer>
+const Footer = props => (
+  <footer className="footer"><b>{props.text}</b></footer>
 );
 
-export default footer;
+export default Footer;
+
+Footer.propTypes = {
+  text: PropTypes.string.isRequired,
+};

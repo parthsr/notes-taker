@@ -1,8 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const header = () => (
-  <header><b>Start taking Notes</b></header>
+const Header = props => (
+  <header><b>{props.text}</b></header>
 );
 
-export default header;
+export default Header;
 
+Header.propTypes = {
+  text: PropTypes.string.isRequired,
+};

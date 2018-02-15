@@ -1,11 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './titleEn.css';
 
-const TitleEn = () => (
+const TitleEn = props => (
   <div className="titleEn">
-    <p>Note Title</p>
-    <button><b>en</b></button>
+    <p>{props.title}</p>
+    <button><b>{props.buttonText}</b></button>
   </div>
 );
+
+TitleEn.propTypes = {
+  title: PropTypes.string.isRequired,
+  buttonText: PropTypes.string.isRequired,
+};
 
 export default TitleEn;

@@ -6,9 +6,9 @@ import './board.css';
 
 const Board = () => (
   <div className="board">
-    <Header />
+    <Header text="Start taking Notes" />
     <BoardContent />
-    <Footer />
+    <Footer text="AboutUs" />
   </div>
 );
 

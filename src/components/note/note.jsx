@@ -1,12 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import img from '../../assets/notepad.png';
 import './note.css';
 
-const Note = () => (
+const Note = props => (
   <div className="note">
-    <p><em>Please type your note below </em></p>
+    <p><em>{props.text}</em></p>
     <img src={img} alt="img" />
   </div>
 );
+
+Note.propTypes = {
+  text: PropTypes.string.isRequired,
+};
 
 export default Note;

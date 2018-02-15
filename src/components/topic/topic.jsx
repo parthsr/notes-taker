@@ -1,10 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './topic.css';
 
-const Topic = () => (
+const Topic = props => (
   <div className="topic">
-    <input placeholder="Tasks for Today" />
+    <input placeholder={props.placeholder} />
   </div>
 );
 
 export default Topic;
+
+Topic.propTypes = {
+  placeholder: PropTypes.string.isRequired,
+};
