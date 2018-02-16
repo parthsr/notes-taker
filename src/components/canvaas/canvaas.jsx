@@ -4,10 +4,18 @@ import './Canvaas.css';
 
 class Canvaas extends React.Component {
   constructor(props) {
-    Canvaas.propTypes = {
-      onLengthChange: PropTypes.func.isRequired,
-    };
     super(props);
+    Canvaas.propTypes = {
+      realText: PropTypes.string.isRequired,
+      limit: PropTypes.number,
+      onLengthChange: PropTypes.func,
+    };
+
+    Canvaas.defaultProps = {
+      limit: false,
+      onLengthChange: () => {
+      },
+    };
   }
   render() {
     return (
@@ -23,10 +31,4 @@ class Canvaas extends React.Component {
   }
 }
 export default Canvaas;
-
-Canvaas.propTypes = {
-  realText: PropTypes.string.isRequired,
-  limit: PropTypes.number.isRequired,
-
-};
 

@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import BoardContent from '../BoardContent/BoardContent';
+import ManyNotes from '../ManyNotes/ManyNotes';
 import './Board.css';
 
 class Board extends React.Component {
@@ -18,18 +19,36 @@ class Board extends React.Component {
     totalContents.push(toInsertObject);
     this.setState({
       totalContent: totalContents,
+      saved: true,
     });
   }
-  render() {
+  comingBack = () => {
+    this.setState({
+      saved: false,
+    });
+  };
+  renderingPage = () => {
+    if (this.state.saved === false) {
+      return (
+        <div className="Board-board">
+          <Header className="Board-header" text="Start taking Notes" />
+          <BoardContent
+            onSave={(title, textAreaContent) => this.onSave(title, textAreaContent)}
+          />
+          <Footer className="Board-footer"text="AboutUs" />
+        </div>
+      );
+    }
     return (
       <div className="Board-board">
-        <Header className="Board-header" text="Start taking Notes" />
-        <BoardContent
-          onSave={(title, textAreaContent) => this.onSave(title, textAreaContent)}
-        />
-        <Footer className="Board-footer"text="AboutUs" />
+        <Header text="Saved Notes" />
+        <ManyNotes totalContent={JSON.stringify(this.state.totalContent)} />
+        <Footer text="Create New Note" onClicks={() => this.comingBack()} />
       </div>
     );
+  }
+  render() {
+    return (this.renderingPage());
   }
 }
 export default Board;

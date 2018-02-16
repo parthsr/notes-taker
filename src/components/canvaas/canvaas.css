@@ -1,5 +1,6 @@
 textarea{
     flex-grow: 1;
+    width:100%;
 }
 .warning{
     background-color: red;

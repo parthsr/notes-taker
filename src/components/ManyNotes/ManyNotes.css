@@ -1,0 +1,9 @@
+.ManyNotes-notes{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding:10px;
+}
+.ManyNotes-indiv{
+    width:100%;
+}
