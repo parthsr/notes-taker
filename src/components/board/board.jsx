@@ -14,6 +14,7 @@ class Board extends React.Component {
     const toInsertObject = {
       title,
       content: textAreaContent,
+      id: this.state.totalContent.length,
     };
     const totalContents = this.state.totalContent;
     totalContents.push(toInsertObject);
@@ -42,7 +43,7 @@ class Board extends React.Component {
     return (
       <div className="Board-board">
         <Header text="Saved Notes" />
-        <ManyNotes totalContent={JSON.stringify(this.state.totalContent)} />
+        <ManyNotes totalContent={this.state.totalContent} />
         <Footer text="Create New Note" onClicks={() => this.comingBack()} />
       </div>
     );

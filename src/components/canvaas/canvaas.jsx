@@ -7,14 +7,16 @@ class Canvaas extends React.Component {
     super(props);
     Canvaas.propTypes = {
       realText: PropTypes.string.isRequired,
-      limit: PropTypes.number,
+      limit: PropTypes.bool,
       onLengthChange: PropTypes.func,
+      onClick: PropTypes.func,
     };
 
     Canvaas.defaultProps = {
       limit: false,
       onLengthChange: () => {
       },
+      onClick: () => {},
     };
   }
   render() {
@@ -26,6 +28,8 @@ class Canvaas extends React.Component {
           this.props.onLengthChange(event);
         }
       }
+        onClick={() => { this.props.onClick(); }}
+
       />
     );
   }
