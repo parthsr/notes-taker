@@ -9,6 +9,10 @@ class Board extends React.Component {
   state = {
     totalContent: [],
     saved: false,
+    title: '',
+    content: '',
+    id: 0,
+    history: false,
   }
   onSave = (title, textAreaContent) => {
     const toInsertObject = {
@@ -17,15 +21,45 @@ class Board extends React.Component {
       id: this.state.totalContent.length,
     };
     const totalContents = this.state.totalContent;
-    totalContents.push(toInsertObject);
+    if (this.state.history) {
+      totalContents[this.state.id] = {
+        title: this.state.title,
+        content: textAreaContent,
+        id: totalContents[this.state.id].id,
+      };
+      // totalContents.find((object, index) => {
+      //   if (object.title === this.state.title) {
+      //     totalContents[index] = {
+      //       title: this.state.title,
+      //       content: textAreaContent,
+      //       id: totalContents[index].id,
+      //     };
+      //     return true; // stop searching
+      //   }
+      //   return true;
+      // });
+    } else {
+      totalContents.push(toInsertObject);
+    }
     this.setState({
       totalContent: totalContents,
       saved: true,
+      history: false,
+    });
+  }
+  onHistoryClick = (id) => {
+    this.setState({
+      title: this.state.totalContent[id].title,
+      content: this.state.totalContent[id].content,
+      saved: false,
+      history: true,
+      id,
     });
   }
   comingBack = () => {
     this.setState({
       saved: false,
+      history: false,
     });
   };
   renderingPage = () => {
@@ -35,6 +69,11 @@ class Board extends React.Component {
           <Header className="Board-header" text="Start taking Notes" />
           <BoardContent
             onSave={(title, textAreaContent) => this.onSave(title, textAreaContent)}
+            savedNote={{
+              title: this.state.title,
+              content: this.state.content,
+              history: this.state.history,
+            }}
           />
           <Footer className="Board-footer"text="AboutUs" />
         </div>
@@ -43,7 +82,10 @@ class Board extends React.Component {
     return (
       <div className="Board-board">
         <Header text="Saved Notes" />
-        <ManyNotes totalContent={this.state.totalContent} />
+        <ManyNotes
+          onHistoryClick={(id) => { this.onHistoryClick(id); }}
+          totalContent={this.state.totalContent}
+        />
         <Footer text="Create New Note" onClicks={() => this.comingBack()} />
       </div>
     );

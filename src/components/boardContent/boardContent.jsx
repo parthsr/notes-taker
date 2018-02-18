@@ -19,8 +19,16 @@ class BoardContent extends React.Component {
     };
     BoardContent.propTypes = {
       onSave: PropTypes.func.isRequired,
+      savedNote: PropTypes.instanceOf({ }),
+    };
+    BoardContent.defaultProps = {
+      savedNote: {
+        title: this.state.title,
+        content: this.state.textAreaContent,
+      },
     };
   }
+
   onTopicChange = (event) => {
     this.setState({
       title: event.target.value,
@@ -54,12 +62,13 @@ class BoardContent extends React.Component {
         <TitleEn title="Note Title" buttonText="en" />
         <Topic
           placeholder="Tasks for Today"
-          realText={this.state.title}
+          realText={this.props.savedNote.history ? this.props.savedNote.title : this.state.title}
           onTopicChange={event => this.onTopicChange(event)}
         />
         <Note text="Please type your note below" />
         <Canvaas
-          realText={this.state.textAreaContent}
+          realText={this.props.savedNote.history ?
+            this.props.savedNote.content : this.state.content}
           onLengthChange={event => this.onLengthChange(event)}
           limit={this.state.limit}
         />
