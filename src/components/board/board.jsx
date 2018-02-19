@@ -14,25 +14,37 @@ class Board extends React.Component {
     id: 0,
     history: false,
   }
-  onSave = (title, textAreaContent) => {
-    const toInsertObject = {
-      title,
-      content: textAreaContent,
-      id: this.state.totalContent.length,
-    };
+  onTopicChange = (event) => {
+    this.setState({
+      title: event.target.value,
+    });
+  }
+  onLengthChange = (note) => {
+    this.setState({
+      content: note,
+    });
+  }
+
+  onSave = () => {
     const totalContents = this.state.totalContent;
     if (this.state.history) {
       totalContents[this.state.id] = {
         title: this.state.title,
-        content: textAreaContent,
+        content: this.state.content,
         id: totalContents[this.state.id].id,
       };
     } else {
+      const toInsertObject = {
+        title: this.state.title,
+        content: this.state.content,
+        id: this.state.totalContent.length,
+      };
       totalContents.push(toInsertObject);
     }
     this.setState({
       totalContent: totalContents,
       saved: true,
+      id: this.state.totalContent.length,
       history: false,
     });
   }
@@ -49,6 +61,9 @@ class Board extends React.Component {
     this.setState({
       saved: false,
       history: false,
+      title: '',
+      content: '',
+      id: this.state.totalContent.length,
     });
   };
   renderingPage = () => {
@@ -57,12 +72,11 @@ class Board extends React.Component {
         <div className="Board-board">
           <Header className="Board-header" text="Start taking Notes" />
           <BoardContent
-            onSave={(title, textAreaContent) => this.onSave(title, textAreaContent)}
-            savedNote={{
-              title: this.state.title,
-              content: this.state.content,
-              history: this.state.history,
-            }}
+            realText={this.state.title}
+            onTopicChange={event => this.onTopicChange(event)}
+            onLengthChange={note => this.onLengthChange(note)}
+            onSave={() => this.onSave()}
+            realContent={this.state.content}
           />
           <Footer className="Board-footer"text="AboutUs" />
         </div>

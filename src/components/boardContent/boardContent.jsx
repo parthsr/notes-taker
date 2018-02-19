@@ -4,7 +4,7 @@ import TitleEn from '../TitleEn/TitleEn';
 import Topic from '../Topic/Topic';
 import Note from '../Note/Note';
 import Canvaas from '../Canvaas/canvaas';
-import Save from '../Save/Save';
+import Save from '../Save/save';
 import './BoardContent.css';
 
 
@@ -28,53 +28,41 @@ class BoardContent extends React.Component {
       },
     };
   }
-
-  onTopicChange = (event) => {
-    this.setState({
-      title: event.target.value,
-    });
-  }
   onLengthChange= (event) => {
-    this.note = event.target.value;
-    if (this.note.length > 119) {
-      this.note = this.note.slice(0, 119);
-      this.setState({ limit: true });
+    let note = event.target.value;
+    if (note.length > 119) {
+      note = note.slice(0, 119);
+      this.setState({
+        limit: true,
+        length: note.length,
+      });
     } else {
-      this.setState({ limit: false });
+      this.setState({
+        limit: false,
+        length: note.length,
+      });
     }
-    this.setState({
-      length: event.target.value.length,
-      textAreaContent: this.note,
-    });
+    this.props.onLengthChange(note);
   }
-  // lol
-  onSaveContent = () => {
-    this.props.onSave(this.state.title, this.state.textAreaContent);
-    this.setState({
-      length: 0,
-      title: '',
-      textAreaContent: '',
-      limit: false,
-    });
-  }
+
   render() {
     return (
       <div className="BoardContent-boardcontent">
         <TitleEn title="Note Title" buttonText="en" />
         <Topic
           placeholder="Tasks for Today"
-          realText={this.props.savedNote.history ? this.props.savedNote.title : this.state.title}
-          onTopicChange={event => this.onTopicChange(event)}
+          realText={this.props.realText}
+          onTopicChange={event => this.props.onTopicChange(event)}
         />
         <Note text="Please type your note below" />
         <Canvaas
-          realText={this.props.savedNote.history ?
-            this.props.savedNote.content : this.state.content}
+          realText={this.props.realContent}
           onLengthChange={event => this.onLengthChange(event)}
           limit={this.state.limit}
+          onClick={() => {}}
         />
         <Save
-          onSaveContent={() => this.onSaveContent()}
+          onSave={() => this.props.onSave()}
           length={this.state.length}
         />
       </div>

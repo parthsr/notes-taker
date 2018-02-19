@@ -16,15 +16,12 @@ class ManyNotes extends React.Component {
       onHistoryClick: PropTypes.func.isRequired,
     };
   }
-  onClick(id) {
-    this.props.onHistoryClick(id);
-  }
   render = () => {
     const { totalContent } = this.props;
     const contentToDisplay = totalContent.map(content => (
       <div className="ManyNotes-indiv" key={new Date() + content.id}>
-        <Title title={content.title} />
-        <Canvaas onClick={() => this.onClick(content.id)}realText={content.content} />
+        <Title title={content.title} onClick={() => this.props.onHistoryClick(content.id)} />
+        <Canvaas onClick={() => this.props.onHistoryClick(content.id)}realText={content.content} />
       </div>
     ));
     return (

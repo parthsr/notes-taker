@@ -23,13 +23,13 @@ class Canvaas extends React.Component {
     return (
       <textarea
         className={this.props.limit ? 'warning' : 'noWarning'}
+        value={this.props.realText}
         onChange={(event) => {
           this.props.onLengthChange(event);
         }
       }
         onClick={() => { this.props.onClick(); }}
-      >{this.props.realText}
-      </textarea>
+      />
     );
   }
 }
