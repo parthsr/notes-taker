@@ -15,6 +15,22 @@ const noteReducer = (state = initialState, action) => {
         id: note.id,
       });
     }
+    case 'EDIT_NOTE': {
+      const note = action.payload;
+      return ({
+        ...state,
+        saved: false,
+        id: note.id,
+      });
+    }
+    case 'NEW_NOTE': {
+      const note = action.payload;
+      return ({
+        ...state,
+        saved: note.saved,
+        id: note.id,
+      });
+    }
     default: {
       return state;
     }

@@ -5,7 +5,8 @@ import Footer from '../Footer/Footer';
 import BoardContent from '../BoardContent/boardContent';
 import ManyNotes from '../ManyNotes/ManyNotes';
 import './Board.css';
-import { saveNote } from '../../redux/actions/actions';
+import { saveNote, editNote, newNote } from '../../redux/actions/actions';
+
 
 class Board extends React.Component {
   state = {
@@ -43,17 +44,18 @@ class Board extends React.Component {
   }
   onHistoryClick = (id) => {
     this.setState({
-      title: this.state.totalContent[id].title,
-      content: this.state.totalContent[id].content,
-      saved: false,
-      id,
+      title: this.props.totalContent[id].title,
+      content: this.props.totalContent[id].content,
     });
+    this.props.onHistoryClick({ id });
   }
   comingBack = () => {
     this.setState({
-      saved: false,
       title: '',
       content: '',
+    });
+    this.props.onNewNote({
+      saved: false,
       id: this.props.totalContent.length,
     });
   };
@@ -96,6 +98,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onSaveNote: note => dispatch(saveNote(note)),
+  onHistoryClick: note => dispatch(editNote(note)),
+  onNewNote: note => dispatch(newNote(note)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);
