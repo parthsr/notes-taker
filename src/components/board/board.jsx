@@ -13,7 +13,7 @@ class Board extends React.Component {
     content: '',
     id: 0,
     history: false,
-  }
+    //lol
   onSave = (title, textAreaContent) => {
     const toInsertObject = {
       title,

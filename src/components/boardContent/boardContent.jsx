@@ -47,6 +47,7 @@ class BoardContent extends React.Component {
       textAreaContent: this.note,
     });
   }
+  // lol
   onSaveContent = () => {
     this.props.onSave(this.state.title, this.state.textAreaContent);
     this.setState({
