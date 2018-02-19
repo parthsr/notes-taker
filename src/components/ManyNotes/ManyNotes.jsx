@@ -17,7 +17,7 @@ class ManyNotes extends React.Component {
     };
   }
   render = () => {
-    const totalContent = this.props.totalContent;
+    const { totalContent } = this.props;
     const contentToDisplay = totalContent.map(content => (
       <div className="ManyNotes-indiv" key={new Date() + content.id}>
         <Title title={content.title} onClick={() => this.props.onHistoryClick(content.id)} />

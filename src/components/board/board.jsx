@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import BoardContent from '../BoardContent/boardContent';
@@ -9,6 +10,20 @@ import { saveNote, editNote, newNote } from '../../redux/actions/actions';
 
 
 class Board extends React.Component {
+  constructor(props) {
+    super(props);
+    Board.propTypes = {
+      totalContent: PropTypes.instanceOf({ }),
+      onNewNote: PropTypes.func.isRequired,
+      onHistoryClick: PropTypes.func.isRequired,
+      onSaveNote: PropTypes.func.isRequired,
+      id: PropTypes.number.isRequired,
+      saved: PropTypes.bool.isRequired,
+    };
+    Board.defaultProps = {
+      totalContent: [],
+    };
+  }
   state = {
     title: '',
     content: '',
