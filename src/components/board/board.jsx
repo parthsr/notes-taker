@@ -13,7 +13,7 @@ class Board extends React.Component {
     content: '',
     id: 0,
     history: false,
-    //lol
+  }
   onSave = (title, textAreaContent) => {
     const toInsertObject = {
       title,
@@ -27,17 +27,6 @@ class Board extends React.Component {
         content: textAreaContent,
         id: totalContents[this.state.id].id,
       };
-      // totalContents.find((object, index) => {
-      //   if (object.title === this.state.title) {
-      //     totalContents[index] = {
-      //       title: this.state.title,
-      //       content: textAreaContent,
-      //       id: totalContents[index].id,
-      //     };
-      //     return true; // stop searching
-      //   }
-      //   return true;
-      // });
     } else {
       totalContents.push(toInsertObject);
     }
