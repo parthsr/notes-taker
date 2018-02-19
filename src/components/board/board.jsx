@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import BoardContent from '../BoardContent/BoardContent';
+import BoardContent from '../BoardContent/boardContent';
 import ManyNotes from '../ManyNotes/ManyNotes';
 import './Board.css';
 

@@ -3,7 +3,7 @@ import React from 'react';
 import TitleEn from '../TitleEn/TitleEn';
 import Topic from '../Topic/Topic';
 import Note from '../Note/Note';
-import Canvaas from '../Canvaas/Canvaas';
+import Canvaas from '../Canvaas/canvaas';
 import Save from '../Save/Save';
 import './BoardContent.css';
 
