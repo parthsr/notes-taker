@@ -13,19 +13,14 @@ class BoardContent extends React.Component {
     super(props);
     this.state = {
       length: 0,
-      title: '',
-      textAreaContent: '',
       limit: false,
     };
     BoardContent.propTypes = {
       onSave: PropTypes.func.isRequired,
-      savedNote: PropTypes.instanceOf({ }),
-    };
-    BoardContent.defaultProps = {
-      savedNote: {
-        title: this.state.title,
-        content: this.state.textAreaContent,
-      },
+      onLengthChange: PropTypes.func.isRequired,
+      realText: PropTypes.string.isRequired,
+      onTopicChange: PropTypes.func.isRequired,
+      realContent: PropTypes.string.isRequired,
     };
   }
   onLengthChange= (event) => {
