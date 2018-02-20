@@ -1,6 +1,8 @@
+import axios from 'axios';
+
 const initialState = {
   totalContent: [],
-  id: 0,
+  noteid: 0,
   saved: false,
 };
 
@@ -12,7 +14,7 @@ const noteReducer = (state = initialState, action) => {
         ...state,
         totalContent: note.totalContent,
         saved: note.saved,
-        id: note.id,
+        noteid: note.noteid,
       });
     }
     case 'EDIT_NOTE': {
@@ -20,7 +22,7 @@ const noteReducer = (state = initialState, action) => {
       return ({
         ...state,
         saved: false,
-        id: note.id,
+        noteid: note.noteid,
       });
     }
     case 'NEW_NOTE': {
@@ -28,8 +30,25 @@ const noteReducer = (state = initialState, action) => {
       return ({
         ...state,
         saved: note.saved,
-        id: note.id,
+        noteid: note.noteid,
       });
+    }
+    case 'GET_NOTE': {
+      const notes = action.payload;
+      return ({
+        ...state,
+        totalContent: notes,
+        noteid: notes.length,
+      });
+    }
+    case 'PUT_NOTE': {
+      const options = {
+        url: '/notes',
+        method: 'POST',
+        data: state.totalContent,
+      };
+      axios(options);
+      return (state);
     }
     default: {
       return state;

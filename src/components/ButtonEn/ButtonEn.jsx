@@ -1,12 +1,12 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const ButtonEn = props => (
-  <button><b>{props.buttonText}</b></button>
+  <button onClick={() => props.onClicks()}><b>{props.buttonText}</b></button>
 );
 
 ButtonEn.propTypes = {
-  buttonText: Proptypes.string.isRequired,
+  buttonText: PropTypes.string.isRequired,
 };
 
 export default ButtonEn;

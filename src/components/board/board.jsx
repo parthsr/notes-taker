@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import BoardContent from '../BoardContent/boardContent';
 import ManyNotes from '../ManyNotes/ManyNotes';
 import './Board.css';
-import { saveNote, editNote, newNote } from '../../redux/actions/actions';
+import { saveNote, editNote, newNote, getNote, putNote } from '../../redux/actions/actions';
 
 
 class Board extends React.Component {
@@ -17,7 +18,7 @@ class Board extends React.Component {
       onNewNote: PropTypes.func.isRequired,
       onHistoryClick: PropTypes.func.isRequired,
       onSaveNote: PropTypes.func.isRequired,
-      id: PropTypes.number.isRequired,
+      noteid: PropTypes.number.isRequired,
       saved: PropTypes.bool.isRequired,
     };
     Board.defaultProps = {
@@ -27,6 +28,12 @@ class Board extends React.Component {
   state = {
     title: '',
     content: '',
+  }
+  componentDidMount = () => {
+    axios.get('/notes').then((notes) => {
+      this.props.getData(notes.data);
+      console.log(notes.data);
+    }).catch(console.log);
   }
   onTopicChange = (event) => {
     this.setState({
@@ -41,10 +48,10 @@ class Board extends React.Component {
 
   onSave = () => {
     const totalContents = this.props.totalContent;
-    totalContents[this.props.id] = {
+    totalContents[this.props.noteid] = {
       title: this.state.title,
       content: this.state.content,
-      id: this.props.id,
+      noteid: this.props.noteid,
     };
     // this.setState({
     //   totalContent: totalContents,
@@ -54,15 +61,18 @@ class Board extends React.Component {
     this.props.onSaveNote({
       totalContent: totalContents,
       saved: true,
-      id: this.props.totalContent.length,
+      noteid: this.props.totalContent.length,
     });
   }
-  onHistoryClick = (id) => {
+  onHistoryClick = (noteid) => {
     this.setState({
-      title: this.props.totalContent[id].title,
-      content: this.props.totalContent[id].content,
+      title: this.props.totalContent[noteid].title,
+      content: this.props.totalContent[noteid].content,
     });
-    this.props.onHistoryClick({ id });
+    this.props.onHistoryClick({ noteid });
+  }
+  onClicks = () => {
+    this.props.putData();
   }
   comingBack = () => {
     this.setState({
@@ -71,9 +81,11 @@ class Board extends React.Component {
     });
     this.props.onNewNote({
       saved: false,
-      id: this.props.totalContent.length,
+      noteid: this.props.totalContent.length,
     });
   };
+
+
   renderingPage = () => {
     if (this.props.saved === false) {
       return (
@@ -94,8 +106,9 @@ class Board extends React.Component {
       <div className="Board-board">
         <Header text="Saved Notes" />
         <ManyNotes
-          onHistoryClick={(id) => { this.onHistoryClick(id); }}
+          onHistoryClick={(noteid) => { this.onHistoryClick(noteid); }}
           totalContent={this.props.totalContent}
+          onClicks={() => this.onClicks()}
         />
         <Footer text="Create New Note" onClicks={() => this.comingBack()} />
       </div>
@@ -107,7 +120,7 @@ class Board extends React.Component {
 }
 const mapStateToProps = state => ({
   totalContent: state.notes.totalContent,
-  id: state.notes.id,
+  noteid: state.notes.noteid,
   saved: state.notes.saved,
 });
 
@@ -115,6 +128,8 @@ const mapDispatchToProps = dispatch => ({
   onSaveNote: note => dispatch(saveNote(note)),
   onHistoryClick: note => dispatch(editNote(note)),
   onNewNote: note => dispatch(newNote(note)),
+  getData: notes => dispatch(getNote(notes)),
+  putData: () => dispatch(putNote()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);
