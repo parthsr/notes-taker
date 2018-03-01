@@ -42,6 +42,7 @@ const noteReducer = (state = initialState, action) => {
       });
     }
     case 'PUT_NOTE': {
+      console.log('putting note');
       const options = {
         url: '/notes',
         method: 'POST',
